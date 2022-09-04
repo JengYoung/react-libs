@@ -7,8 +7,8 @@ HEAD_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 echo " ============================================================================ "
 echo " 🟠 NOW BRANCH IS ${HEAD_BRANCH}. CHECK PUSH POSSIBLE... 🔍 🟠 "
 
-FORBIDDEN_HTTPS_URL="https://github.com/JengYoung/react-libs" # insert your remote url (https)
-FORBIDDEN_SSH_URL="git@github.com:JengYoung/react-libs" # insert your remote url (ssh)
+FORBIDDEN_HTTPS_URL="https://github.com/JengYoung/react-libs.git" # insert your remote url (https)
+FORBIDDEN_SSH_URL="git@github.com:JengYoung/react-libs.git" # insert your remote url (ssh)
 
 # remained develop branch which could use later! 🥰
 FORBIDDEN_REFS=("main" "develop") # insert branch ref
@@ -18,7 +18,7 @@ url=$2
 if [ "${url}" != "${FORBIDDEN_HTTPS_URL}" -a "${url}" != "${FORBIDDEN_SSH_URL}" ]
 then
     echo "🔴 🚫 YOUR URL: ${url}, FORBIDDEN URL: ${FORBIDDEN_HTTPS_URL}(https), ${FORBIDDEN_SSH_URL}(ssh) 🔴"
-    exit 0
+    exit 1;
 fi
 
 refs_check=false
