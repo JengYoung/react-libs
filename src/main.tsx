@@ -1,6 +1,4 @@
 import { StrictMode } from 'react';
-import { configureStore } from '@reduxjs/toolkit';
-import createSagaMiddleware from 'redux-saga';
 
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -9,22 +7,13 @@ import { Provider } from 'react-redux';
 import AppLayout from './AppLayout';
 import './index.css';
 import HomePage from './pages/HomePage';
-import { rootReducer, rootSaga } from './store';
+import store from './store';
 
 import {
   ChangeMobileNumberPage,
   ChangePasswordPage,
   MyPage,
 } from './pages/MyPage/index';
-
-const sagaMiddleware = createSagaMiddleware();
-const store = configureStore({
-  reducer: rootReducer,
-  devTools: true,
-  middleware: [sagaMiddleware],
-});
-
-sagaMiddleware.run(rootSaga);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>

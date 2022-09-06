@@ -4,13 +4,13 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import getPostsAPI from '../../apis/posts/getPosts';
 import { InitialStateInterface, PostInterface } from './types';
 
-const initialState: InitialStateInterface = {
+export const initialState: InitialStateInterface = {
   isLoading: false,
   posts: [],
   postsError: null,
 };
 
-export const slice = createSlice({
+export const posts = createSlice({
   name: 'posts',
   initialState,
   reducers: {
@@ -40,12 +40,12 @@ export const slice = createSlice({
   },
 });
 
-export const postsName = slice.name;
-export const postsReducer = slice.reducer;
-export const postsAction = slice.actions;
+export const postsName = posts.name;
+export const postsReducer = posts.reducer;
+export const postsAction = posts.actions;
 
 // get Saga
-export async function* getPostsSaga() {
+export function* getPostsSaga() {
   const { getPostsSuccess, getPostsFailure } = postsAction;
 
   try {
