@@ -27,6 +27,8 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'default-param-last': 0,
+    'react/require-default-props': 0,
   },
   settings: {
     'import/resolver': {

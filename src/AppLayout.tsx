@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
 
 interface AppProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 function App({ children }: AppProps) {
