@@ -11,7 +11,7 @@ const initialState: InitialStateInterface = {
 };
 
 export const slice = createSlice({
-  name: 'POSTS',
+  name: 'posts',
   initialState,
   reducers: {
     getPosts: (state) => {
@@ -40,7 +40,7 @@ export const slice = createSlice({
   },
 });
 
-export const POSTS_NAME = slice.name;
+export const postsName = slice.name;
 export const postsReducer = slice.reducer;
 export const postsAction = slice.actions;
 

@@ -1,12 +1,11 @@
-import { all } from 'redux-saga/effects';
+import { combineReducers } from 'redux';
+import { all, fork } from 'redux-saga/effects';
 import postsReducer, { postsSaga } from './posts/reducer';
 
 export function* rootSaga() {
-  yield all([postsSaga()]);
+  yield all([fork(postsSaga)]);
 }
 
-export const rootReducer = () => {
-  return {
-    posts: postsReducer,
-  };
-};
+export const rootReducer = combineReducers({
+  posts: postsReducer,
+});
