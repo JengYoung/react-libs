@@ -1,2 +1,2 @@
 export { default as postsReducer } from './reducer';
-export * as postsTypes from './types';
+export * as PostsTypes from './types';
