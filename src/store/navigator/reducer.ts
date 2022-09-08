@@ -14,7 +14,7 @@ export const navigatorSlice = createSlice({
     updatePage: (state, action) => {
       return {
         ...state,
-        ...action.payload,
+        page: action.payload,
       };
     },
   },

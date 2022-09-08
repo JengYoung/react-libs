@@ -22,7 +22,7 @@ const StyledHeader = styled.header`
   height: 5rem;
   padding: 0 1rem;
   background-color: #fefefe;
-  box-shadow: 0px 1px 1px 1px #333;
+  box-shadow: 0px 0.5px 1px 1px #eeeeee;
 `;
 
 const StyledNav = styled.nav`

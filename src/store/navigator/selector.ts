@@ -5,8 +5,8 @@ const navigatorSelf = (state: CombinedState<RootState>) => {
   return state.navigator;
 };
 
-const postsSelector = createSelector(navigatorSelf, (posts) => {
-  return posts;
+const navigatorSelector = createSelector(navigatorSelf, (navigator) => {
+  return navigator.page;
 });
 
-export default postsSelector;
+export default navigatorSelector;

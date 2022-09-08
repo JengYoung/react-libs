@@ -14,25 +14,31 @@ import {
   ChangePasswordPage,
   MyPage,
 } from './pages/MyPage/index';
+import Navigator from './components/Navigator/Index';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="home" element={<HomePage />} />
-            <Route path="me">
-              <Route index element={<MyPage />} />
-              <Route path="change-password" element={<ChangePasswordPage />} />
-              <Route
-                path="change-mobile-number"
-                element={<ChangeMobileNumberPage />}
-              />
+        <Navigator>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="home" element={<HomePage />} />
+              <Route path="me">
+                <Route index element={<MyPage />} />
+                <Route
+                  path="change-password"
+                  element={<ChangePasswordPage />}
+                />
+                <Route
+                  path="change-mobile-number"
+                  element={<ChangeMobileNumberPage />}
+                />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
+          </Routes>
+        </Navigator>
       </BrowserRouter>
     </Provider>
   </StrictMode>
