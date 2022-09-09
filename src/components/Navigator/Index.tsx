@@ -1,29 +1,48 @@
-import React, { isValidElement, ReactNode, useEffect } from 'react';
+import React, {
+  isValidElement,
+  ReactElement,
+  ReactNode,
+  useEffect,
+} from 'react';
 import { useSelector } from 'react-redux';
-import store from '../../store';
-import { navigatorAction } from '../../store/navigator/reducer';
+import { RouterProps, useLocation } from 'react-router-dom';
+
 import navigatorSelector from '../../store/navigator/selector';
+import { navigatorAction } from '../../store/navigator/reducer';
+import store from '../../store';
 
 interface NavigatorProps {
-  children?: ReactNode;
+  children: ReactNode;
 }
+
 function Navigator({ children }: NavigatorProps) {
-  const PrevPage = useSelector(navigatorSelector);
+  const navigator = useSelector(navigatorSelector);
+  const location = useLocation();
 
   useEffect(() => {
-    async function getPrevPage() {
-      if (!isValidElement(children)) return;
-      await store.dispatch(
-        navigatorAction.updatePage(React.cloneElement(children))
-      );
-    }
+    if (!isValidElement(children)) return;
 
-    getPrevPage();
-  }, []);
+    store.dispatch(
+      navigatorAction.updatePage({
+        type: 'PUSH',
+        page: React.cloneElement(
+          children as unknown as ReactElement<RouterProps>,
+          {
+            location,
+            key: location.key,
+          }
+        ),
+      })
+    );
+  }, [location]);
 
   return (
     <>
-      <div>{PrevPage}</div>
+      <div className="clone">
+        {navigator.prevPages.map((page) => (
+          <div key={`${new Date().getTime()}`}>{page}</div>
+        ))}
+      </div>
       {children}
     </>
   );

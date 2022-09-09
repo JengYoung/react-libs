@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 import store from '../store';
 import { posts } from '../store/posts/reducer';
 import postsSelector from '../store/posts/selector';
@@ -20,7 +21,11 @@ function HomePage() {
     }
     fetchPosts();
   }, []);
-  return <StyledHomePage>{JSON.stringify(globalState)}</StyledHomePage>;
+  return (
+    <StyledHomePage>
+      <div>{JSON.stringify(globalState)}</div>
+    </StyledHomePage>
+  );
 }
 
 export default React.memo(HomePage);

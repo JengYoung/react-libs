@@ -20,9 +20,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Navigator>
-          <Routes>
-            <Route element={<AppLayout />}>
+        <AppLayout>
+          <Navigator>
+            <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="me">
@@ -36,9 +36,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   element={<ChangeMobileNumberPage />}
                 />
               </Route>
-            </Route>
-          </Routes>
-        </Navigator>
+            </Routes>
+          </Navigator>
+        </AppLayout>
       </BrowserRouter>
     </Provider>
   </StrictMode>

@@ -14,29 +14,23 @@ export const posts = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    getPosts: (state) => {
-      return {
-        ...state,
-        isLoading: true,
-      };
-    },
+    getPosts: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
     getPostsSuccess: (
       state = initialState,
       action: PayloadAction<PostInterface[]>
-    ) => {
-      return {
-        ...state,
-        isLoading: false,
-        posts: action.payload,
-      };
-    },
-    getPostsFailure: (state, { payload: error }) => {
-      return {
-        ...state,
-        isLoading: false,
-        postsError: error,
-      };
-    },
+    ) => ({
+      ...state,
+      isLoading: false,
+      posts: action.payload,
+    }),
+    getPostsFailure: (state, { payload: error }) => ({
+      ...state,
+      isLoading: false,
+      postsError: error,
+    }),
   },
 });
 

@@ -16,7 +16,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
-    'arrow-body-style': ['error', 'always'],
+    // 'arrow-body-style': ['error', 'always'],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -29,6 +29,7 @@ module.exports = {
     ],
     'default-param-last': 0,
     'react/require-default-props': 0,
+    'react/destructuring-assignment': 0,
   },
   settings: {
     'import/resolver': {

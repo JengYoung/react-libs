@@ -45,9 +45,7 @@ function Header() {
   const [pathName, setPathName] = useState('');
 
   useEffect(() => {
-    setPathName(() => {
-      return location.pathname;
-    });
+    setPathName(() => location.pathname);
   }, [location]);
 
   return (
@@ -56,13 +54,11 @@ function Header() {
         <img src={Logo} alt="logo" />
       </StyledLogoContainer>
       <StyledNav>
-        {links.map((link) => {
-          return (
-            <HeaderLink nowPath={pathName} key={link.path} path={link.path}>
-              {link.name}
-            </HeaderLink>
-          );
-        })}
+        {links.map((link) => (
+          <HeaderLink nowPath={pathName} key={link.path} path={link.path}>
+            {link.name}
+          </HeaderLink>
+        ))}
       </StyledNav>
     </StyledHeader>
   );
