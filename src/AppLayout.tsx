@@ -10,7 +10,6 @@ interface AppProps {
 }
 
 const StyledContainer = styled.div`
-  height: 100%;
   height: calc(100vh - 5rem);
   margin-top: 5rem;
 `;

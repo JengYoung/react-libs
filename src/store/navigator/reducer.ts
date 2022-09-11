@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { put } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
 import { InitialStateInterface } from './types';
 
 export const initialState: InitialStateInterface = {
+  isLoading: false,
   prevPages: [],
   nowPage: null,
 };
@@ -16,9 +17,17 @@ export const navigatorSlice = createSlice({
   name: 'navigator',
   initialState,
   reducers: {
+    loadingNavigator: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
+    initialize: () => ({
+      ...initialState,
+      isLoading: false,
+    }),
     updatePage: (state, { payload }) => {
       /* eslint-disable no-prototype-builtins */
-      console.log(payload);
+      if (state.isLoading) return;
 
       if (payload.type === payloadTypes.pop) {
         if (!state.prevPages.length) return initialState;
@@ -28,8 +37,17 @@ export const navigatorSlice = createSlice({
 
         return {
           ...state,
+          isLoading: false,
           prevPages: nextPrevPages,
           nowPage: nextNowPage,
+        };
+      }
+
+      if (state.nowPage === null) {
+        return {
+          ...state,
+          prevPages: [],
+          nowPage: payload.page,
         };
       }
 
@@ -47,8 +65,9 @@ export const navigatorAction = navigatorSlice.actions;
 const navigatorReducer = navigatorSlice.reducer;
 
 export function* navigatorSaga() {
-  const { updatePage } = navigatorAction;
-  yield put(updatePage);
+  const { loadingNavigator, initialize, updatePage } = navigatorAction;
+  yield takeEvery(loadingNavigator, updatePage);
+  yield takeEvery(loadingNavigator, initialize);
 }
 
 export default navigatorReducer;

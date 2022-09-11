@@ -27,9 +27,10 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'default-param-last': 0,
-    'react/require-default-props': 0,
-    'react/destructuring-assignment': 0,
+    'default-param-last': 0, // 기본값을 반드시 뒤로 하지 않는 게 더 깔끔해서 설정. (특히 객체로 되어있지 않을 때 불편함)
+    'react/require-default-props': 0, // prop을 조건부로 설정하기 위해 설정
+    'react/destructuring-assignment': 0, // 항상 destructuring하지 않아도 괜찮도록 설정
+    'consistent-return': 0, // useEffect cleanup 함수에서 굉장히 불편함을 느끼므로 설정
   },
   settings: {
     'import/resolver': {

@@ -6,6 +6,7 @@ const StyledLink = styled(Link)`
   margin-right: 1rem;
   font-weight: 700;
   color: #40b9fe;
+  text-decoration: none;
 
   &.link--active,
   &:hover {
@@ -22,9 +23,10 @@ interface HeaderLinkProps {
 }
 
 function HeaderLink({ nowPath, path, children }: HeaderLinkProps) {
-  const isActive = useMemo(() => {
-    return nowPath === path ? 'link--active' : '';
-  }, [nowPath]);
+  const isActive = useMemo(
+    () => (nowPath === path ? 'link--active' : ''),
+    [nowPath]
+  );
   return (
     <StyledLink className={isActive} to={path}>
       {children}
