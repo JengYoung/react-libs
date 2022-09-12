@@ -10,14 +10,17 @@ import React, {
 import { useSelector } from 'react-redux';
 import { Location, RouterProps, useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
-
 import { css } from '@emotion/react';
+import navigatorCSS from './navigatorCSS';
+
 import navigatorSelector from '../../store/navigator/selector';
 import { navigatorAction } from '../../store/navigator/reducer';
 import store from '../../store';
+import NavigatorDirections from './types';
 
 interface StyledNavigatorProps {
   navigate: boolean;
+  direction: NavigatorDirections;
 }
 
 interface NavigatorProps {
@@ -25,31 +28,33 @@ interface NavigatorProps {
 }
 
 const NowPage = styled.div`
+  width: 100vw;
   height: calc(100vh - 5rem);
 `;
 
 const PrevPage = styled(NowPage)`
   position: relative;
   z-index: -999;
+  width: 100vw;
 `;
 
 const StyledNavigator = styled.div<Partial<StyledNavigatorProps>>`
   position: relative;
-  ${({ navigate }) =>
+  display: flex;
+
+  ${({ navigate, direction }) => navigate && navigatorCSS(direction)}
+
+  ${({ navigate, direction }) =>
     navigate &&
+    direction &&
     css`
-      @keyframes fadeUp {
-        0% {
-          z-index: -99;
-          transform: translateY(0%);
-        }
-        100% {
-          z-index: -99;
-          transform: translateY(calc(-100vh + 5rem));
-        }
-      }
-      animation: fadeUp 0.75s ease-in forwards;
+      animation: navigate-animation 0.75s ease-in forwards;
     `}
+
+  > * {
+    flex-shrink: 0;
+    width: 100vw !important;
+  }
 `;
 
 function Navigator({ children }: NavigatorProps) {
@@ -114,6 +119,7 @@ function Navigator({ children }: NavigatorProps) {
     <StyledNavigator
       className="navigator"
       navigate={isNavigate}
+      direction={NavigatorDirections.RIGHT}
       onAnimationEnd={onAnimationEnd}
     >
       {isNavigate && <PrevPage className="prev-page">{LastPage}</PrevPage>}
