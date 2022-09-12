@@ -11,30 +11,45 @@ import { useSelector } from 'react-redux';
 import { Location, RouterProps, useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
 
+import { css } from '@emotion/react';
 import navigatorSelector from '../../store/navigator/selector';
 import { navigatorAction } from '../../store/navigator/reducer';
 import store from '../../store';
+
+interface StyledNavigatorProps {
+  navigate: boolean;
+}
 
 interface NavigatorProps {
   children: ReactNode;
 }
 
-const StyledTransitionPage = styled.div`
-  @keyframes fadeUp {
-    0% {
-      top: 0%;
-      display: block;
-    }
-    100% {
-      top: -100%;
-      display: flex;
-    }
-  }
+const NowPage = styled.div`
+  height: calc(100vh - 5rem);
+`;
+
+const PrevPage = styled(NowPage)`
   position: relative;
-  top: -100%;
-  height: 100%;
-  transition: all 0.3s;
-  animation: fadeUp 1s forwards;
+  z-index: -999;
+`;
+
+const StyledNavigator = styled.div<Partial<StyledNavigatorProps>>`
+  position: relative;
+  ${({ navigate }) =>
+    navigate &&
+    css`
+      @keyframes fadeUp {
+        0% {
+          z-index: -99;
+          transform: translateY(0%);
+        }
+        100% {
+          z-index: -99;
+          transform: translateY(calc(-100vh + 5rem));
+        }
+      }
+      animation: fadeUp 0.75s ease-in forwards;
+    `}
 `;
 
 function Navigator({ children }: NavigatorProps) {
@@ -47,9 +62,7 @@ function Navigator({ children }: NavigatorProps) {
   useEffect(() => {
     setLocation(() => nowLocation);
 
-    return () => {
-      setLocation(() => null);
-    };
+    return () => setLocation(() => null);
   }, [nowLocation]);
 
   useLayoutEffect(() => {
@@ -73,31 +86,40 @@ function Navigator({ children }: NavigatorProps) {
     };
   }, [location]);
 
-  useEffect(() => {
-    console.log(navigator);
-  }, [navigator]);
-
-  const onAnimationEnd = () => {
-    console.log('bys');
-    setIsAnimationCompleted(() => true);
-  };
+  // useEffect(() => {
+  //   console.log(navigator);
+  // }, [navigator]);
 
   const LastPage = useMemo(
     () =>
       navigator.prevPages.length ? (
-        <StyledTransitionPage onAnimationEnd={onAnimationEnd}>
-          {navigator.prevPages[navigator.prevPages.length - 1]}
-        </StyledTransitionPage>
-      ) : null,
+        navigator.prevPages[navigator.prevPages.length - 1]
+      ) : (
+        <div />
+      ),
     [navigator]
   );
 
+  const isNavigate = useMemo(
+    () => !isAnimationCompleted && !!navigator.prevPages.length,
+    [isAnimationCompleted, navigator.prevPages.length]
+  );
+
+  const onAnimationEnd = () => {
+    if (!navigator.prevPages.length) return;
+    setIsAnimationCompleted(() => true);
+  };
+
   return (
-    <>
-      {!isAnimationCompleted && LastPage ? LastPage : undefined}
-      {navigator.nowPage}
-    </>
+    <StyledNavigator
+      className="navigator"
+      navigate={isNavigate}
+      onAnimationEnd={onAnimationEnd}
+    >
+      {isNavigate && <PrevPage className="prev-page">{LastPage}</PrevPage>}
+      <NowPage>{navigator.nowPage}</NowPage>
+    </StyledNavigator>
   );
 }
 
-export default Navigator;
+export default React.memo(Navigator);
