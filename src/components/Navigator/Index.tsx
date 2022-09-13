@@ -10,7 +10,6 @@ import React, {
 import { useSelector } from 'react-redux';
 import { Location, RouterProps, useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import navigatorCSS from './navigatorCSS';
 
 import navigatorSelector from '../../store/navigator/selector';
@@ -21,48 +20,54 @@ import NavigatorDirections from './types';
 interface StyledNavigatorProps {
   navigate: boolean;
   direction: NavigatorDirections;
+  delay: number;
+  height: string;
 }
 
 interface NavigatorProps {
   children: ReactNode;
+  delay?: number;
+  height?: string;
+  directions: {
+    [index: string]: NavigatorDirections;
+  };
 }
 
-const NowPage = styled.div`
-  width: 100vw;
-  height: calc(100vh - 5rem);
-`;
+interface RoutePageProps {
+  height: string;
+}
 
-const PrevPage = styled(NowPage)`
-  position: relative;
-  z-index: -999;
-  width: 100vw;
+const RoutePage = styled.div<RoutePageProps>`
+  height: ${({ height }) => height};
 `;
 
 const StyledNavigator = styled.div<Partial<StyledNavigatorProps>>`
   position: relative;
   display: flex;
 
-  ${({ navigate, direction }) => navigate && navigatorCSS(direction)}
-
-  ${({ navigate, direction }) =>
+  ${({ navigate, direction, height, delay }) =>
     navigate &&
     direction &&
-    css`
-      animation: navigate-animation 0.75s ease-in forwards;
-    `}
+    navigatorCSS(direction, height as string, delay as number)}
 
   > * {
     flex-shrink: 0;
-    width: 100vw !important;
+    width: 100vw;
   }
 `;
 
-function Navigator({ children }: NavigatorProps) {
+function Navigator({
+  children,
+  delay = 0.75,
+  height = '100vh',
+  directions,
+}: NavigatorProps) {
   const navigator = useSelector(navigatorSelector);
   const nowLocation = useLocation();
 
   const [location, setLocation] = useState<null | Location>(null);
   const [isAnimationCompleted, setIsAnimationCompleted] = useState(false);
+  const [direction, setDirection] = useState<NavigatorDirections | undefined>();
 
   useEffect(() => {
     setLocation(() => nowLocation);
@@ -73,6 +78,8 @@ function Navigator({ children }: NavigatorProps) {
   useLayoutEffect(() => {
     if (!location) return;
     if (!isValidElement(children)) return;
+
+    setDirection(() => directions[location.pathname]);
 
     store.dispatch(
       navigatorAction.updatePage({
@@ -88,6 +95,7 @@ function Navigator({ children }: NavigatorProps) {
     );
     return () => {
       setIsAnimationCompleted(() => false);
+      setDirection(() => undefined);
     };
   }, [location]);
 
@@ -119,11 +127,18 @@ function Navigator({ children }: NavigatorProps) {
     <StyledNavigator
       className="navigator"
       navigate={isNavigate}
-      direction={NavigatorDirections.RIGHT}
+      direction={direction}
       onAnimationEnd={onAnimationEnd}
+      delay={delay}
+      height={height}
     >
-      {isNavigate && <PrevPage className="prev-page">{LastPage}</PrevPage>}
-      <NowPage>{navigator.nowPage}</NowPage>
+      {isNavigate && (
+        <RoutePage className="prev-page" height={height}>
+          {direction}
+          {LastPage}
+        </RoutePage>
+      )}
+      <RoutePage height={height}>{navigator.nowPage}</RoutePage>
     </StyledNavigator>
   );
 }

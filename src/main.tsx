@@ -15,13 +15,22 @@ import {
   MyPage,
 } from './pages/MyPage/index';
 import Navigator from './components/Navigator/Index';
+import NavigatorDirections from './components/Navigator/types';
 
+const directions = {
+  '/home': NavigatorDirections.BOTTOM,
+  '/me': NavigatorDirections.LEFT,
+};
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <AppLayout>
-          <Navigator>
+          <Navigator
+            directions={directions}
+            delay={0.75}
+            height="calc(100vh - 5rem)"
+          >
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="home" element={<HomePage />} />

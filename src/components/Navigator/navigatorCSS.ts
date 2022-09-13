@@ -1,21 +1,26 @@
 import { css } from '@emotion/react';
 import NavigatorDirections from './types';
 
-const navigatorCSS = (direction: NavigatorDirections | undefined) => {
+const navigatorCSS = (
+  direction: NavigatorDirections | undefined,
+  height: string,
+  delay: number
+) => {
   if (direction === NavigatorDirections.TOP) {
     return css`
       flex-direction: column;
 
-      @keyframes navigate-animation {
+      @keyframes navigate-animation-top {
         0% {
           z-index: -99;
           transform: translateY(0%);
         }
         100% {
           z-index: -99;
-          transform: translateY(calc(-100vh + 5rem));
+          transform: translateY(calc(-1 * ${height}));
         }
       }
+      animation: navigate-animation-top ${delay}s ease-in forwards;
     `;
   }
 
@@ -23,22 +28,23 @@ const navigatorCSS = (direction: NavigatorDirections | undefined) => {
     return css`
       flex-direction: column-reverse;
 
-      @keyframes navigate-animation {
+      @keyframes navigate-animation-bottom {
         0% {
           z-index: -99;
-          transform: translateY(calc(-100vh + 5rem));
+          transform: translateY(calc(-1 * ${height}));
         }
         100% {
           z-index: -99;
           transform: translateY(0%);
         }
       }
+      animation: navigate-animation-bottom ${delay}s ease-in forwards;
     `;
   }
 
   if (direction === NavigatorDirections.LEFT) {
     return css`
-      @keyframes navigate-animation {
+      @keyframes navigate-animation-left {
         0% {
           transform: translateX(0%);
         }
@@ -46,6 +52,7 @@ const navigatorCSS = (direction: NavigatorDirections | undefined) => {
           transform: translateX(-100%);
         }
       }
+      animation: navigate-animation-left ${delay}s ease-in forwards;
     `;
   }
 
@@ -53,7 +60,7 @@ const navigatorCSS = (direction: NavigatorDirections | undefined) => {
     return css`
       flex-direction: row-reverse;
 
-      @keyframes navigate-animation {
+      @keyframes navigate-animation-right {
         0% {
           transform: translateX(0%);
         }
@@ -61,6 +68,8 @@ const navigatorCSS = (direction: NavigatorDirections | undefined) => {
           transform: translateX(100%);
         }
       }
+
+      animation: navigate-animation-right ${delay}s ease-in forwards;
     `;
   }
 
