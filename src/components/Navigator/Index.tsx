@@ -1,7 +1,6 @@
 import React, {
   isValidElement,
   ReactElement,
-  ReactNode,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -10,32 +9,17 @@ import React, {
 import { useSelector } from 'react-redux';
 import { Location, RouterProps, useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
-import navigatorCSS from './navigatorCSS';
 
+import store from '../../store';
 import navigatorSelector from '../../store/navigator/selector';
 import { navigatorAction } from '../../store/navigator/reducer';
-import store from '../../store';
-import NavigatorDirections from './types';
 
-interface StyledNavigatorProps {
-  navigate: boolean;
-  direction: NavigatorDirections;
-  delay: number;
-  height: string;
-}
-
-interface NavigatorProps {
-  children: ReactNode;
-  delay?: number;
-  height?: string;
-  directions: {
-    [index: string]: NavigatorDirections;
-  };
-}
-
-interface RoutePageProps {
-  height: string;
-}
+import navigatorCSS from './navigatorCSS';
+import NavigatorDirections, {
+  NavigatorProps,
+  RoutePageProps,
+  StyledNavigatorProps,
+} from './types';
 
 const RoutePage = styled.div<RoutePageProps>`
   height: ${({ height }) => height};
@@ -99,10 +83,6 @@ function Navigator({
     };
   }, [location]);
 
-  // useEffect(() => {
-  //   console.log(navigator);
-  // }, [navigator]);
-
   const LastPage = useMemo(
     () =>
       navigator.prevPages.length ? (
@@ -134,7 +114,6 @@ function Navigator({
     >
       {isNavigate && (
         <RoutePage className="prev-page" height={height}>
-          {direction}
           {LastPage}
         </RoutePage>
       )}
