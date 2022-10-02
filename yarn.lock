@@ -812,10 +812,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.7.15":
-  version: 18.7.15
-  resolution: "@types/node@npm:18.7.15"
-  checksum: 1435fc7fe44744467a3ba8ace646455be228516530dbb3db64a03cca6abcfdc5ba2e48a3eafc71f25f836d2ca871132361c58a5e760237a53674cb09151147d9
+"@types/node@npm:^18.7.23":
+  version: 18.7.23
+  resolution: "@types/node@npm:18.7.23"
+  checksum: 2c8df0830d8345e5cd1ca17feb9cf43fa667aae749888e0a068c5c1b35eaedd2f9b24ed987a0758078395edf7a03681e5e0b7790a518ff7afe1ff6d8459f7b4a
   languageName: node
   linkType: hard
 
@@ -4348,7 +4348,7 @@ __metadata:
     "@emotion/styled": ^11.10.4
     "@reduxjs/toolkit": ^1.8.5
     "@stylelint/postcss-css-in-js": ^0.38.0
-    "@types/node": ^18.7.15
+    "@types/node": ^18.7.23
     "@types/react": ^18.0.17
     "@types/react-dom": ^18.0.6
     "@types/react-redux": ^7.1.24
