@@ -39,7 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:11.10.4"],\
             ["@reduxjs/toolkit", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:1.8.5"],\
             ["@stylelint/postcss-css-in-js", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:0.38.0"],\
-            ["@types/node", "npm:18.7.15"],\
+            ["@types/node", "npm:18.7.23"],\
             ["@types/react", "npm:18.0.18"],\
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/react-redux", "npm:7.1.24"],\
@@ -1159,10 +1159,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/node", [\
-        ["npm:18.7.15", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-18.7.15-3b77ff6bd6-1435fc7fe4.zip/node_modules/@types/node/",\
+        ["npm:18.7.23", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.7.23-070e968159-2c8df0830d.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:18.7.15"]\
+            ["@types/node", "npm:18.7.23"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5488,7 +5488,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:11.10.4"],\
             ["@reduxjs/toolkit", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:1.8.5"],\
             ["@stylelint/postcss-css-in-js", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:0.38.0"],\
-            ["@types/node", "npm:18.7.15"],\
+            ["@types/node", "npm:18.7.23"],\
             ["@types/react", "npm:18.0.18"],\
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/react-redux", "npm:7.1.24"],\
