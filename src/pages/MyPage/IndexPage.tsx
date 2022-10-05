@@ -16,7 +16,7 @@ function MyPage() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setVisible(() => true);
-        } else if (visible) {
+        } else {
           setVisible(() => false);
         }
       });
