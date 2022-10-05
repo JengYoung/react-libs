@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 
@@ -11,22 +11,19 @@ function MyPage() {
   const callbackRef = useRef<IntersectionObserverCallback | null>(null);
   const [visible, setVisible] = useState(false);
 
-  const callback = useCallback(
-    (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setVisible(() => true);
-        } else {
-          setVisible(() => false);
-        }
-      });
-    },
-    [visible]
-  );
+  const callback = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setVisible(() => true);
+      } else {
+        setVisible(() => false);
+      }
+    });
+  };
 
   useEffect(() => {
     callbackRef.current = callback;
-  }, [callbackRef]);
+  }, []);
 
   useIntersectionObserver(observerTargetRef, callbackRef, {});
 
