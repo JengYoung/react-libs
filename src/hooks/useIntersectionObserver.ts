@@ -1,18 +1,12 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { RefObject, useEffect } from 'react';
 
 type CallbackType = IntersectionObserverCallback;
 const useIntersectionObserver = (
   targetRef: RefObject<Element>,
-  callback: CallbackType,
+  callbackRef: RefObject<CallbackType>,
   { root, rootMargin, threshold }: IntersectionObserverInit
 ) => {
   const options = { root, rootMargin, threshold };
-  const callbackRef = useRef<CallbackType | null>(null);
-
-  useEffect(() => {
-    callbackRef.current = callback;
-  }, [callbackRef]);
-
   useEffect(() => {
     if (callbackRef.current === null || targetRef.current === null) return;
 
@@ -26,7 +20,7 @@ const useIntersectionObserver = (
     };
   }, [targetRef, callbackRef]);
 
-  return [targetRef, callbackRef];
+  return callbackRef;
 };
 
 export default useIntersectionObserver;
