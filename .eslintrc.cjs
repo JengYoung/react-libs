@@ -45,4 +45,15 @@ module.exports = {
       },
     },
   },
+  // IntersectionObserverInit
+  overrides: [
+    // Typescript related rules
+    {
+      files: ['*.ts', '*.tsx'],
+      plugins: ['@typescript-eslint/eslint-plugin'],
+      parserOptions: {
+        project: ['./tsconfig.json'],
+      },
+    },
+  ],
 };
