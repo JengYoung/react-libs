@@ -15,6 +15,7 @@ import {
 } from './pages/MyPage/index';
 import Navigator from './components/Navigator/Index';
 import NavigatorDirections from './components/Navigator/types';
+import { FunnelPage } from './pages/Funnel';
 
 const directions = {
   '/home': NavigatorDirections.BOTTOM,
@@ -44,6 +45,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   element={<ChangeMobileNumberPage />}
                 />
               </Route>
+              
+              <Route path="funnel" element={<FunnelPage />}/>
             </Routes>
           </Navigator>
         </AppLayout>

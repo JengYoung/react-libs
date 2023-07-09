@@ -34,7 +34,8 @@ module.exports = {
     'react/require-default-props': 0, // prop을 조건부로 설정하기 위해 설정
     'react/destructuring-assignment': 0, // 항상 destructuring하지 않아도 괜찮도록 설정
     'consistent-return': 0, // useEffect cleanup 함수에서 굉장히 불편함을 느끼므로 설정
-    'no-shadow': 'off',
+    'no-shadow': 0,
+    'import/prefer-default-export': 0,
     '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/no-unused-vars': ['error'],
   },
