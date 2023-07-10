@@ -54,7 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lint-staged", "npm:13.2.3"],\
             ["postcss", "npm:8.4.25"],\
             ["postcss-syntax", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:0.36.2"],\
-            ["prettier", "npm:2.8.8"],\
+            ["prettier", "npm:3.0.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:18.2.0"],\
             ["react-redux", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:8.1.1"],\
@@ -5522,10 +5522,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["prettier", [\
-        ["npm:2.8.8", {\
-          "packageLocation": "./.yarn/cache/prettier-npm-2.8.8-430828a36c-b49e409431.zip/node_modules/prettier/",\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/prettier-npm-3.0.0-7ffbcce680-6a832876a1.zip/node_modules/prettier/",\
           "packageDependencies": [\
-            ["prettier", "npm:2.8.8"]\
+            ["prettier", "npm:3.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5671,7 +5671,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lint-staged", "npm:13.2.3"],\
             ["postcss", "npm:8.4.25"],\
             ["postcss-syntax", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:0.36.2"],\
-            ["prettier", "npm:2.8.8"],\
+            ["prettier", "npm:3.0.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:18.2.0"],\
             ["react-redux", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:8.1.1"],\
@@ -6661,7 +6661,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["stylelint-prettier", "virtual:ce59f08680dd3408f5628d54e6b40296e9f42e9a9ccddccf3fcee68b59ad1f72ab434d8ac2a62ae3f5097703d5e5baa5b01fe94b7d9e5908267cc154c33b71f2#npm:2.0.0"],\
             ["@types/prettier", null],\
             ["@types/stylelint", null],\
-            ["prettier", "npm:2.8.8"],\
+            ["prettier", "npm:3.0.0"],\
             ["prettier-linter-helpers", "npm:1.0.0"],\
             ["stylelint", "npm:14.16.1"]\
           ],\
