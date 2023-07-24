@@ -7,29 +7,31 @@ export type TUseFunnelParams = {
 
 export type THistory<State> = {
   step: string;
-  state: State
+  state: State | null
 }
 
 export type TFunnelState<State> = {
   step: string;
+  state: State | null;
   histories: THistory<State>[];
 }
 
 export const useFunnel = <State>({ entry }: TUseFunnelParams) => {
-  const [funnelState, setFunnelState] = useState<TFunnelState<State>>({ step: entry, histories: [] });
+  const [funnelState, setFunnelState] = useState<TFunnelState<State>>({ step: entry, state: null, histories: [] });
 
-  const go = (key: string, historyState: State) => {
+  const go = (key: string, nextState: State) => {
     setFunnelState(state => ({ 
       ...state, 
-      step: key, 
-      histories: [...state.histories, { step: state.step, state: historyState }] 
+      step: key,
+      state: nextState,
+      histories: [...state.histories, { step: state.step, state: state.state }] 
     }));
   }
   
   const isEntry = !funnelState.histories.length
 
   const pop = (): THistory<State> | null => {
-    if (!isEntry) return null;
+    if (isEntry) return null;
 
     const returnState = funnelState.histories.at(-1) as THistory<State>
 
