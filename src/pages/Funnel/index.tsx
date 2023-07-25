@@ -3,6 +3,12 @@ import mermaid from "mermaid";
 import { useFunnel } from '../../hooks/useFunnel/useFunnel'
 
 
+enum Names {
+  "첫번째단계"="첫번째단계",
+  "두번째단계"="두번째단계",
+  "세번째단계"="세번째단계",
+  "완료"="완료",
+}
 mermaid.initialize({
   startOnLoad: true
 });
@@ -24,27 +30,27 @@ export function FunnelPage() {
   return (
     <>
     <Funnel step={step}>
-      <Funnel.Step name="hello">
+      <Funnel.Step name={Names.첫번째단계}>
         Hello!1
-        <button type="button" onClick={() => go('hello3')}>CLICK!</button>
+        <button type="button" onClick={() => go(Names.세번째단계)}>CLICK!</button>
         <button type="button" onClick={() => pop()}>POP!</button>
       </Funnel.Step>
 
-      <Funnel.Step name="hello2">
+      <Funnel.Step name={Names.두번째단계}>
         Hello!!!2
-        <button type="button" onClick={() => go('hello')}>CLICK TO ENTRY!</button>
-        <button type="button" onClick={() => go('done')}>CLICK TO DONE!</button>
+        <button type="button" onClick={() => go(Names.첫번째단계)}>CLICK TO ENTRY!</button>
+        <button type="button" onClick={() => go(Names.완료)}>CLICK TO DONE!</button>
 
         <button type="button" onClick={() => pop()}>POP!</button>
       </Funnel.Step>
 
-      <Funnel.Step name="hello3">
+      <Funnel.Step name={Names.세번째단계}>
         Hello!!!3
-        <button type="button" onClick={() => go('hello2')}>CLICK!</button>
+        <button type="button" onClick={() => go(Names.두번째단계)}>CLICK!</button>
         <button type="button" onClick={() => pop()}>POP!</button>
       </Funnel.Step>
 
-      <Funnel.Step name="done">
+      <Funnel.Step name={Names.완료}>
         DONE!!!
 
         <button type="button" onClick={() => pop()}>POP!</button>
@@ -56,10 +62,10 @@ export function FunnelPage() {
 
     <Mermaid
       chart={`graph LR;
-        hello[첫번째단계]-- 건축물유형에서 대출유형 -->hello3[세번째단계];
-        hello2[두번째단계]-- 타입 정하면 완료페이지 -->done[완료];
-        hello3[세번째단계]-- 대출유형에서 생활자금 타입 -->hello2[두번째단계];
-        hello2[두번째단계]-- 잘못입력해서 첫번째단계로 ㅇ-->hello[첫번째단계];
+        ${Names.첫번째단계}[${Names.첫번째단계}]-- 건축물유형에서 대출유형 -->${Names.세번째단계}[${Names.세번째단계}];
+        ${Names.두번째단계}[${Names.두번째단계}]-- 타입 정하면 완료페이지 -->${Names.완료}[${Names.완료}];
+        ${Names.세번째단계}[${Names.세번째단계}]-- 대출유형에서 생활자금 타입 -->${Names.두번째단계}[${Names.두번째단계}];
+        ${Names.두번째단계}[${Names.두번째단계}]-- 잘못입력해서 ${Names.첫번째단계}로 이동 -->${Names.첫번째단계}[${Names.첫번째단계}];
       `}
     />
     </>
