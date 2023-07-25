@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { MouseEvent, useEffect } from 'react'
 import mermaid from "mermaid";
 import { useFunnel } from '../../hooks/useFunnel/useFunnel'
 
@@ -13,19 +13,45 @@ mermaid.initialize({
   startOnLoad: true
 });
 
-function Mermaid({ chart }: { chart: any }) {
+function Mermaid({ chart, go }: { chart: any; go: any; }) {
   useEffect(() => {
     mermaid.contentLoaded();
   }, [])
 
-  return <div className="mermaid">{chart}</div>;
+  const onClick = (e: MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+
+    if (Names[target?.innerText as Names]) {
+      const parent = (e.target as HTMLElement);
+      if (!parent) return;
+
+      go(target?.innerText)
+    }
+  }
+
+  const onMouseOver = (e: MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+
+    if (Names[target?.innerText as Names]) {
+
+      target.style.color = "#752bed"
+      target.style.cursor="pointer"
+    } else {
+      document.querySelectorAll('span').forEach((elem: HTMLSpanElement) => {
+        elem.setAttribute('style', "color: #333; cursor: auto;")
+      })
+    }
+  }
+
+  /* eslint-disable-next-line */
+  return <div className="mermaid" onClick={onClick} onMouseOver={onMouseOver}>{chart}</div>;
 }
 
 
 
 export function FunnelPage() {
 
-  const {step, Funnel, go, pop} = useFunnel({ entry: 'hello' });
+  const {step, Funnel, go, pop} = useFunnel({ entry: Names.첫번째단계 });
 
   return (
     <>
@@ -67,6 +93,8 @@ export function FunnelPage() {
         ${Names.세번째단계}[${Names.세번째단계}]-- 대출유형에서 생활자금 타입 -->${Names.두번째단계}[${Names.두번째단계}];
         ${Names.두번째단계}[${Names.두번째단계}]-- 잘못입력해서 ${Names.첫번째단계}로 이동 -->${Names.첫번째단계}[${Names.첫번째단계}];
       `}
+
+      go={go}
     />
     </>
   )
