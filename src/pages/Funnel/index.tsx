@@ -53,14 +53,15 @@ export function FunnelPage() {
       <div>hi2</div>
 
     </Funnel>
+
     <Mermaid
-        chart={`graph LR;
-          hello[첫번째단계]-->hello3[세번째단계];
-          hello2[두번째단계]-->done[완료];
-          hello3[세번째단계]-->hello2[두번째단계];
-          hello2[두번째단계]-->hello[첫번째단계];
-        `}
-      />
+      chart={`graph LR;
+        hello[첫번째단계]-- 건축물유형에서 대출유형 -->hello3[세번째단계];
+        hello2[두번째단계]-- 타입 정하면 완료페이지 -->done[완료];
+        hello3[세번째단계]-- 대출유형에서 생활자금 타입 -->hello2[두번째단계];
+        hello2[두번째단계]-- 잘못입력해서 첫번째단계로 ㅇ-->hello[첫번째단계];
+      `}
+    />
     </>
   )
 }
