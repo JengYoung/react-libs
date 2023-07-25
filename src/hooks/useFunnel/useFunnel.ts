@@ -19,11 +19,11 @@ export type TFunnelState<State> = {
 export const useFunnel = <State>({ entry }: TUseFunnelParams) => {
   const [funnelState, setFunnelState] = useState<TFunnelState<State>>({ step: entry, state: null, histories: [] });
 
-  const go = (key: string, nextState: State) => {
+  const go = (key: string, nextState?: State | null) => {
     setFunnelState(state => ({ 
       ...state, 
       step: key,
-      state: nextState,
+      state: nextState ?? null,
       histories: [...state.histories, { step: state.step, state: state.state }] 
     }));
   }
